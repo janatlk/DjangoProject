@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Отзывы{% endblock %}</title>
+</head>
+<body>
+    {% block paragr %}
+        {% for i in reviews_list %}
+        <a href="reviews/{{ i.id }}">{{ i.text }}</a>
+            <br>
+            <hr>
+        {% endfor %}
+    {% endblock %}
+</body>
+</html>

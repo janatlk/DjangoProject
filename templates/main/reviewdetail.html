@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Отзыв {{ reviews_details.id }}{% endblock %}</title>
+</head>
+<body>
+    {% block paragr %}
+        <p>{{ reviews_details.text }}</p>
+
+    {% endblock %}
+
+</body>
+</html>

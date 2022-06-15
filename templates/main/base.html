@@ -8,9 +8,13 @@
 <body>
     <div class="container"><h3 class="masthead-brand">www.janat.com</h3></div>
     <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="{% url 'home' %}">Главная страница</a>
-            <a class="nav-link" href="{% url 'page' %}">Ознакомление</a>
-            <a class="nav-link" href="{% url 'today' %}">О погоде</a>
+            <a class="nav-link" href="{% url 'home' %}"><button>Главная страница</button></a>
+            <a class="nav-link" href="{% url 'page' %}"><button>Ознакомление</button></a>
+            <a class="nav-link" href="{% url 'today' %}"><button>О погоде</button></a>
+            <a class='nav-link' href="{% url 'directors' %}"><button>Режиссеры</button></a>
+           <a class='nav-link' href="{% url 'movies' %}"><button>Фильмы</button></a>
+            <a class='nav-link' href="{% url 'reviews' %}"><button>Отзывы</button></a>
+            <a class="nav-link" href="/admin"><button>Админ-панель</button></a>
           </nav>
     <div class="container">{% block paragr %}{% endblock %}</div>
 </body>

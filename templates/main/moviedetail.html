@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Информация про {{ movie_detail.title }}{% endblock %}</title>
+</head>
+<body>
+    {% block paragr %}
+            <h1>{{ movie_detail.title }}</h1>
+            <p>{{ movie_detail.description }}</p>
+    {% endblock %}
+</body>
+</html>
