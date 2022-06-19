@@ -9,9 +9,10 @@
 <body>
     {% block paragr %}
         {% for i in movies_list %}
+            <div class="alert alert-warning mt-2">
             <a href="/movies/{{ i.id }}">{{ i.title }}</a>
             <br>
-            <hr>
+            </div>
         {% endfor %}
     {% endblock %}
 </body>

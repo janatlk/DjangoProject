@@ -9,6 +9,10 @@
     {% block paragr %}
             <h1>{{ movie_detail.title }}</h1>
             <p>{{ movie_detail.description }}</p>
+        <p>Режиссер фильма:<mark>{{ movie_detail.director }}</mark></p>
+            <div class="alert alert-warning mt-2">
+                {% for i in review %}<p>{{ i.text }}</p>{% endfor %}
+            </div>
     {% endblock %}
 </body>
 </html>
