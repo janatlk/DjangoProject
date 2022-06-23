@@ -1,19 +1,13 @@
 {% extends 'main/base.html' %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Фильмы{% endblock %}</title>
-</head>
-<body>
+{% block title %}Фильмы{% endblock %}
     {% block paragr %}
         {% for i in movies_list %}
+            {% if i.image %}
+            <img src="{{ i.image.url }}" alt="" style="width: 400px">
+            {% endif %}
             <div class="alert alert-warning mt-2">
             <a href="/movies/{{ i.id }}">{{ i.title }}</a>
             <br>
             </div>
         {% endfor %}
     {% endblock %}
-</body>
-</html>

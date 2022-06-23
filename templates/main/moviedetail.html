@@ -1,18 +1,13 @@
 {% extends 'main/base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Информация про {{ movie_detail.title }}{% endblock %}</title>
-</head>
-<body>
+{% block title %}Информация про {{ movie_detail.title }}{% endblock %}
     {% block paragr %}
             <h1>{{ movie_detail.title }}</h1>
             <p>{{ movie_detail.description }}</p>
         <p>Режиссер фильма:<mark>{{ movie_detail.director }}</mark></p>
-            <div class="alert alert-warning mt-2">
-                {% for i in review %}<p>{{ i.text }}</p>{% endfor %}
+            <div style="border: darkgray">
+                {% for i in review %}
+                    <hr><p style="contain: size">{{ i.text }}</p><br>
+                    {% endfor %}
             </div>
+        <hr>
     {% endblock %}
-</body>
-</html>
