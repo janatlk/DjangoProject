@@ -9,6 +9,8 @@ urlpatterns = [
     path('about-today',views.today, name='today'),
     path('movies',views.movies_list,name='movies'),
     path('movies/<int:id>',views.movies_details,name='movie_detail'),
+    path('movie_add',views.movie_add),
+    path('director_add',views.director_add),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -21,6 +21,12 @@
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'movies' %}">Фильмы</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/movie_add">Добавить фильм</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/director_add">Добавить режжисёра</a>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="/admin">Админ-панель</a>
         </li>
@@ -29,7 +35,7 @@
   </div>
 </nav>
 </head>
-<body>
+<body {% block bodyb %}{% endblock %}>
     <div class="container">{% block paragr %}{% endblock %}</div>
 </body>
 </html>

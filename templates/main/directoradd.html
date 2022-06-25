@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% block bodyb %}
+    background-color ="white"
+{% endblock %}
+{% block title %}
+    Добавить режиссёра
+{% endblock %}
+
+{% block paragr %}
+    <h2>Добавить режиссёра в базу данных:</h2>
+    <form action="/director_add" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <input type="submit" value="Подтвердить" class="btn btn-success">
+    </form>
+{% endblock %}

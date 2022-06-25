@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Добавить фильм
+{% endblock %}
+
+{% block paragr %}
+    <h2 align="center">Добавить фильм в базу данных:</h2>
+    <form action="/movie_add" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Подтвердить" class="btn btn-success">
+    </form>
+{% endblock %}
