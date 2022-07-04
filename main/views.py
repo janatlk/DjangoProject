@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
 from main.models import Review,Movie
-from main.forms import MovieForm, DirectorForm
+from main.forms import MovieForm, DirectorForm, RegisterForm, LoginForm
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.db import models
 
 def index(request):
     return render(request, "main/index.html")
@@ -44,3 +48,26 @@ def director_add(request):
             form.save()
             return redirect("/director_add")
         return render(request, "main/directoradd.html", context={'form': form})
+
+def register(request):
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(data=request.POST)
+        if form.is_valid():
+            User.is_active = models.BooleanField(default=False)
+            form.save()
+            return redirect('/register/')
+    return render(request,'main/register.html',context={'form':form})
+
+def login_view(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username,password=password)
+            if user:
+                login(request, user=user)
+        return redirect('/login/')
+    return render(request,'main/login.html',context={'form':form})
