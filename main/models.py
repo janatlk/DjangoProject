@@ -1,7 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
 
 
+class CustomUser(AbstractUser):
+    birthday = models.DateField(default='none')
+    gender = models.TextField(default='none')
+
+    def __str__(self):
+        return self.username
 # Create your models here.
 
 # class Product(models.Model):
@@ -16,31 +22,42 @@ from django.contrib.auth.models import AbstractUser, User
 #         return self.title
 
 class Director(models.Model):
-    name = models.CharField(max_length=40)
+    class Meta:
+        verbose_name = 'режиссёр'
+        verbose_name_plural = "режиссёры"
+    name = models.CharField("Имя режжисёра",max_length=40)
 
     def __str__(self):
         return self.name
 
 class Movie(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(default='None',blank=True)
-    director = models.ForeignKey(Director, on_delete=models.SET_NULL,null=True)
-    image = models.ImageField(upload_to='movies', null=True)
+    class Meta:
+        verbose_name = 'фильм'
+        verbose_name_plural = 'фильмы'
+    title = models.CharField('Название фильма',max_length=100)
+    description = models.TextField("Описание",default='None',blank=True)
+    director = models.ForeignKey(Director,on_delete=models.SET_NULL,null=True,verbose_name='Режжисёр')
+    image = models.ImageField("Изображение",upload_to='movies', null=True)
+
 
     def __str__(self):
         return self.title
 
 class Review(models.Model):
-    text = models.TextField()
-    movie = models.ForeignKey(Movie,on_delete=models.CASCADE,null=True)
+    class Meta:
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'отзывы'
+    text = models.TextField('Отзыв')
+    movie = models.ForeignKey(Movie,on_delete=models.CASCADE,null=True,verbose_name='К фильму')
 
     def __str__(self):
-        return list(self.text)[:10]
+        return self.text
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(User)
-#     auth_token = models.CharField(max_length=100)
-#     is_verified = models.BooleanField(default=False)
-#
-#     def __str__(self):
-#         return self.user.username
+
+
+class ConfirmCode(models.Model):
+    code = models.CharField(max_length=100)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.code
